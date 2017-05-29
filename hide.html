@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+
+<style>
+.hidden {
+    display: none;
+}
+
+</style>
+<body>
+	<p>Hello</p>
+  <a href="#">Click to hide me too</a>
+  <p>Here is another paragraph</p>
+  
+    <div class="selectContainer">
+        <select id="theSelect">
+            <option value="">- Select -</option>
+            <option value="Patient">Patient</option>
+            <option value="Physician">Physician</option>
+            <option value="Nurse">Nurse</option>
+        </select>
+    </div>
+    <div class="hidden isPatient">Patient <a href="#" class="remove" rel="Patient">remove</a></div>
+    <div class="hidden isPhysician">Physician <a href="#" class="remove" rel="Patient">remove</a></div>
+    <div class="hidden isNurse">Nurse <a href="#" class="remove" rel="Patient">remove</a></div>
+<script>
+
+    $("p").hide();
+    $("a").click(function () {
+      $(this).hide();
+      return true;
+    });
+	
+	
+	$("#theSelect").change(function(){          
+    var value = $("#theSelect option:selected").val();
+    var theDiv = $(".is" + value);
+    
+    theDiv.slideDown().removeClass("hidden");
+});
+    
+    
+$("div a.remove").click(function () {     
+    $(this).parent().slideUp(function() { $(this).addClass("hidden"); }); 
+});
+</script>
+</body>
+</html>
